@@ -1,0 +1,6 @@
+*.out
+**/.cph/*
+**/.vscode/*
+
+*.pdf
+!practice/itmo/bins/*.pdf

@@ -1,0 +1,27 @@
+obs:
+
+k between 1 and n
+wanna minimize
+could always be n
+can be even/odd
+when you or many elements you can only get up to 2^(log2(max))-1
+
+1 -> only works if all elements same
+2 -> 0 1 1, 0 1 0, 1 0 1, ..., basically 1 elem changing
+3 -> 0 1 2, 
+
+0 1 2 -> 3
+
+hyp:
+something to do with distinct elems?
+
+0 0 0 2 0 0 0 1 0 0 0 2 0 0 0 0 0
+our "window" must cover all distinct elements?
+    - all elements that contribute bits to the or
+  
+our "window" must have enough elements st their bits combined 
+
+
+sol:
+sliding window? how do i reverse or? -> too difficult
+prefix&suffix ors? same issue ^

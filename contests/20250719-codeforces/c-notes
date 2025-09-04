@@ -1,0 +1,5 @@
+surplus 1s: we need to swap 0s with 1s, then drop the extra 1s
+    - minimize 0s we need to swap
+    - if we remove all 0s it doesnt work because we need to return some back
+    - we just remove 0s until we dont have a surplus (or none if we have a deficit)
+surplus 0s: we just drop the extra 0s

@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+
+// macros
+typedef long long int ll;
+#define vec vector 
+#define loop(i, a, b) for (int i = a; i < b; i++)
+#define F first
+#define S second
+// constants
+#define INF (1LL << 62)
+#define int long long
+#define printarr(a) cout << #a << ": "; \
+	 	    for (auto x : a) cout << x << " "; \
+		    cout << "\n";
+
+using namespace std;
+
+void solve() {
+    int n, k;
+	cin >> n >> k;
+	vec<tuple<int,int,int>> p(n);
+
+	loop(i,0,n) {
+		int a,b,c;
+		cin >> a >> b >> c;
+		p[i] = {a,b,c};
+	}
+
+	sort(p.begin(), p.end());
+
+	int s = 0;
+	loop(i,0,n+1) {
+		// cout << "s:" << s << "\n";
+		int workt = false;
+		loop(i,s,n) {
+			int l,r,rr;
+			tie(l,r,rr) = p[i];
+			if (l <= k && k <= r && rr > k) {
+				// cout << rr;
+				s = i;
+				k = rr;
+				workt = true;
+			}
+			// else cout << "-";
+		}
+		// cout << "\n";
+		if (!workt) break;
+	}
+
+	cout << k << "\n";
+}
+
+signed main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	
+	int t = 1;
+	cin >> t;
+	while (t--) solve();
+
+	return 0;
+}
