@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<h1>Codeforces Edu: Binary Search</h1>
+<h1>General binary search</h1>
+<p>```cpp // format: FFFFFFVVVVVVV // swap r = m / l = m if VVVVFFFF</p>
+<p>// set as needed int l = 0, r = n // if you don’t know r while
+(!ok(r)) r *= 2;</p>
+<p>while (r - l &gt; 1) { int m = (r - l) / 2 + l; if (ok(m)) r = m;
+else l = m; }</p>
+<p>// resulting pair will be ok(l) = F, ok(r) = V ```</p>
+<h1>Working with real numbers</h1>
+<p>It’s preferable to, instead of writing
+<code>while (r - l &gt; 1)</code>, use a fixed amount of iterations. 100
+is a good <em>magic number</em> to get $10^{-9}$ precision, but formally
+it’s $\frac{maxAns}{\epsilon}$, where $maxAns$ is the maximum possible
+answer and $\epsilon$ is the desired precision.</p>
+<p>```cpp double l = 0, r = n;</p>
+<p>for (int i = 0; i &lt; 100; i++) { double m = (r - l) / 2 + l; if
+(ok(m)) r = m; // remember to make ok accept doubles!! else l = m; }
+```</p>
+<h1>Minimax problems</h1>
+<p>This happens when you wanna get the minimum value $V$, when $V$ is
+obtained by the maximum of some things. Either min(max(…)) or the
+max(min(…)). Example:</p>
+<blockquote>
+<p>Obtain the path with minimum value M on a graph, where M is the
+maximum edge weight in that path.</p>
+</blockquote>
+<p>For this, one must obtain:</p>
+<p>$min_M(M = max(\cdots))$</p>
+<p>One could pose an <code>ok(x)</code> that checks if $M \le x$. If $M
+\le x$, then $M \le x+k$. So we have a <code>FFFFVVVVVV</code> behavior
+and could binary search the first <code>V</code>.</p>
+<p>Then, one must ask, what does it mean that $max(\cdots) \le x$? Many
+times it means that all elements involved in that max are $\le x$. This
+could be a way to simplify the calculation.</p>
+<h1>Maximum average</h1>
+<p>This happens when one has a set of elements A, and wants to pick the
+subset S with maximum (or minimum) average:</p>
+<p>$$\frac{\sum<em>{i \in S} a</em>i}{|S|} \rightarrow \text{max}$$</p>
+<p>We could pose an <code>ok(x)</code> that checks if</p>
+<p>$$\frac{\sum<em>{i \in S} a</em>i}{|S|} \ge x$$</p>
+<p>Note that if this is true for $x$, it’s true for $x-h$, so this
+follows format <code>VVVVFFFFFF</code> and we could binary search the
+last <code>V</code>, which would represent the maximum average. It’s
+important to treat $x$ as a real number in our binary search.</p>
+<p>To make an efficient problem, let’s simplify this:</p>
+<p>$$\frac{\sum<em>{i \in S} a</em>i}{|S|} \ge x$$</p>
+<p>$$\sum<em>{i \in S} a</em>i \ge x \, |S|$$</p>
+<p>$$\sum<em>{i \in S} a</em>i - x \, |S| \ge 0$$</p>
+<p>$$\sum<em>{i \in S} a</em>i - \sum_{i \in S} x \ge 0$$</p>
+<p>$$\sum<em>{i \in S} (a</em>i - x) \ge 0$$</p>
+<p>So we can check if this sum renders positive for any subset.</p>
+<ul>
+<li>If we’re checking for segments in an array, we could turn this into
+a prefix sum <code>p</code> and calculate
+<code>p[r] - p[l-1]</code></li>
+<li>If these segments should be $\ge D$ in size, we could make a prefix
+minimum array from <code>p</code>; check the article at this point
+lol</li>
+<li>If we’re checking for paths in a graph, you could do a modified DFS
+that tracks if any path’s sum renders positive. This is $O(2^n)$ though
+<ul>
+<li>Particularly if it’s a <a
+href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">DAG</a>, we
+could start off at its “root” and calculate sequentially the minimum sum
+for each node, similar to a topological sort kind of search. Then find
+the minimum sum at the end node that we’re checking (or at all
+nodes)</li>
+</ul></li>
+</ul>
+<h1>K-th element of a sequence</h1>
+<p>This happens when one wants to find the k-th element of an
+<strong>ascending</strong> (or descending) sequence or list, that is
+obtained through some odd method.</p>
+<p>We could consider the function <code>cnt(x)</code> which returns the
+amount of elements in that list that are $&lt; x$.</p>
+<p>Then, we can note something: if we are searching for the element at
+<code>k = 4</code> on a <em>0-indexed</em> list like this:</p>
+<p><code>1 2 3 3 3 4 4 5 6         ^</code></p>
+<p>Then the amount of numbers that are less than 3 is $\le k$, and the
+amount of numbers that are less than 4 is $&gt; k$. Thus, we want to get
+the maximum element such that</p>
+<p>$$cnt(x) \le k$$</p>
+<p>So we can apply binary search to find $x$. The other part of the
+problem will be finding how to calculate <code>cnt(x)</code>.</p>
+</body>
+</html>
