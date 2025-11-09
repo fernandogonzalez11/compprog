@@ -1,0 +1,179 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Define colors for syntax highlighting
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{cppstyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	language=C++
+}
+
+\lstset{style=cppstyle}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+	
+	\section*{Segment tree (bueno)}
+	\begin{lstlisting}
+		/**
+		* Segment tree
+		* De kactl
+		* Indexado en 0, iterativo
+		* Actualizacion en punto
+		* Consultas de forma [l, r)
+		* Complejidad: O(log N)
+		*/
+		
+		struct Mono { /* TODO */
+			static Mono zero() { /* TODO */ }
+		};
+		
+		Mono operator+(Mono a, Mono b) { /* TODO */ }
+		
+		struct Tree {
+			vector<Mono> s;
+			int n;
+			
+			Tree(int n) : n(n), s(2*n, Mono::zero()) {}
+			
+			void update(int pos, T val) {
+				for (s[pos += n] = val; pos >>= 1;) s[pos] = s[pos<<1] + s[pos<<1|1];
+			}
+			
+			// [l, r)
+			T query(int l, int r) {
+				T lv = Mono::zero(), rv = Mono::zero();
+				for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+					if (l&1) lv = lv + s[l++];
+					if (r&1) rv = s[--r] + rv;
+				}
+				return lv + rv;
+			}
+		};
+	\end{lstlisting}
+	
+	\section*{Dijkstra}
+	\begin{lstlisting}
+		/**
+		* Dijkstra
+		* Robado de bruno
+		* O(mlog(n))
+		* Si utilizas esa vara con pesos negativos me enojo
+		* Para bfs 0-1, reemplazar cola de prioridad con un deque
+		*    Si el peso de la arista es 1, meter al final, sino, al frente
+		*/
+		
+		vector<lld> dijkstra(vector<vector<pair<int, lld>>> &adj, int v) {
+			int n = adj.size();
+			vector<lld> d(n, LLONG_MAX >> 3);
+			d[v] = 0;
+			priority_queue<pair<lld, int>> pq;
+			pq.emplace(0, v);
+			
+			while (pq.size()) {
+				auto [ndist, u] = pq.top(); pq.pop();
+				if (-ndist > d[u]) continue;
+				
+				for (auto [idx, w] : adj[u]) if (d[idx] > d[u] + w) {
+					d[idx] = d[u] + w;
+					pq.emplace(-d[idx], idx);
+				}
+			}
+			return d;
+		}
+	\end{lstlisting}
+	
+	\section*{Topsort}
+	\begin{lstlisting}
+		/**
+		* Ordenacion topologica
+		* Robado de bruno
+		* Regresa a una ordenacion topologica de g
+		* Si g no es para DAG, devuelve un vector vacio
+		* O(n + m)
+		*/
+		vector<int> topo_sort(int n, vector<vector<int>> &g) {
+			vector<int> ret(n, -1), vis(n, 0);
+			int pos = n - 1, dag = 1;
+			function<void(int)> dfs = [&](int v) {
+				vis[v] = 1;
+				for (auto u : g[v]) {
+					if (vis[u] == 1) dag = 0;
+					else if (!vis[u]) dfs(u);
+				}
+				ret[pos--] = v, vis[v] = 2;
+			};
+			for (int i = 0; i < n; i++) if (!vis[i]) dfs(i);
+			if (!dag) ret.clear();
+			return ret;
+		}
+	\end{lstlisting}
+	
+	\section*{Puentes y puntos de articulación}
+	\begin{lstlisting}
+		/**
+		* SCC con Tarjan
+		* Robado de bruno
+		* O(n + m)
+		*/
+		struct Tarjan {
+			vector<vector<int>> g;
+			stack<int> s;
+			vector<int> vis, comp, id;
+			Tarjan(int len, vector<vector<int>> &adj) {
+				g = adj;
+				vis.assign(len, 0);
+				comp.assign(len, 0);
+				id.assign(len, 0);
+			}
+			int dfs(int i, int &t) {
+				int lo = id[i] = t++;
+				s.push(i);
+				vis[i] = 2;
+				for (int j : g[i]) {
+					if (!vis[j]) lo = min(lo, dfs(j, t));
+					else if (vis[j] == 2) lo = min(lo, id[j]);
+				}
+				if (lo == id[i]) while (1) {
+					int u = s.top();
+					s.pop();
+					vis[u] = 1, comp[u] = i;
+					if (u == i) break;
+				}
+				return lo;
+			}
+			void tarjan(int n) {
+				int t = 0;
+				for (int i = 0; i < n; i++) vis[i] = 0;
+				for (int i = 0; i < n; i++) if (!vis[i]) dfs(i, t);
+			}
+		};
+	\end{lstlisting}
+	
+\end{document}
