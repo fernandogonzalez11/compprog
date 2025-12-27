@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 
 // macros
@@ -16,7 +17,17 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    map<char, int> m;
+	loop(i,0,5) {
+		string s;
+		cin >> s;
+		m[s[0]]++;
+	}
+
+	int M = -INF;
+	for (auto [k,v] : m) M = max(M, v);
+
+	cout << M << "\n";
 }
 
 signed main() {

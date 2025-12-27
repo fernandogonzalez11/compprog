@@ -15,8 +15,30 @@ typedef long long int ll;
 
 using namespace std;
 
+vec<int> v;
+int n;
+
+bool ok(int x) {
+	if (x>n) return false;
+	return accumulate(v.begin(),v.end(),0)-x+1 >= n;
+}	
+
 void solve() {
-    
+	cin >> n;
+	v.clear();
+	v.resize(n);
+	sort(v.begin(),v.end());
+	
+	loop(i,0,n) cin >> v[i];
+	int l = 1, r = 2;
+	while (ok(r)) r *= 2;
+	while (r-l>1) {
+		int m = (r-l)/2+l;
+		if (ok(m)) l = m;
+		else r = m;
+	}
+
+	cout << l << "\n";
 }
 
 signed main() {
@@ -24,7 +46,7 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
+	cin >> t;
 	while (t--) solve();
 
 	return 0;

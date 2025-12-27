@@ -16,7 +16,21 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int n;
+	cin >> n;
+	priority_queue<int> q;
+	int p = 0;
+	loop(i,0,n) {
+		int x;
+		cin >> x;
+		if (x) q.push(x);
+		else if (!q.empty()) {
+			p += q.top();
+			q.pop();
+		}
+	}
+
+	cout << p << "\n";
 }
 
 signed main() {
@@ -24,7 +38,7 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
+	cin >> t;
 	while (t--) solve();
 
 	return 0;

@@ -15,8 +15,15 @@ typedef long long int ll;
 
 using namespace std;
 
+int ceil(int n, int k) {
+	return n/k + (n%k!=0);
+}
+
 void solve() {
-    
+    int n;
+	cin >> n;
+
+	cout << ceil(n,2) << "\n";
 }
 
 signed main() {

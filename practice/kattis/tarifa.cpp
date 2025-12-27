@@ -16,7 +16,16 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int x, n, a;
+	cin >> x >> n;
+
+	int budget = x;
+	loop(i,0,n) {
+		cin >> a;
+		budget = budget - a + x;
+	}
+
+	cout << budget << "\n";
 }
 
 signed main() {

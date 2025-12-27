@@ -16,7 +16,14 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int n;
+	cin >> n;
+
+	if (n==1) cout << 1;
+	else if (n==2) cout << 9;
+	else cout << max(5*n*n-5*n-5, 4*n*n-n-4);
+
+	cout << "\n";
 }
 
 signed main() {
@@ -24,7 +31,7 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
+	cin >> t;
 	while (t--) solve();
 
 	return 0;

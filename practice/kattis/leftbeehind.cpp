@@ -15,8 +15,11 @@ typedef long long int ll;
 
 using namespace std;
 
-void solve() {
-    
+string solve(int x, int y) {
+	if (x+y == 13) return "Never speak again.";
+	if (x==y) return "Undecided.";
+	if (x>y) return "To the convention.";
+	return "Left beehind.";
 }
 
 signed main() {
@@ -24,8 +27,13 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
-	while (t--) solve();
+	while (true) {
+		int x,y;
+		cin >> x >> y;
+
+		if (x == 0 && y == 0) return 0;
+		cout<<solve(x, y)<<"\n";
+	}
 
 	return 0;
 }

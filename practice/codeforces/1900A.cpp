@@ -15,8 +15,27 @@ typedef long long int ll;
 
 using namespace std;
 
-void solve() {
-    
+int solve() {
+    int n;
+	cin >> n;
+
+	string s;
+	cin >> s;
+
+	int i = 0;
+	int M = -1, S = 0;
+	while (i < n) {
+		if (s[i] == '.') {
+			int start = i;
+			while (i < n && s[i] == '.') i++;
+			int end = i;
+			M = max(M, end-start);
+			S += end-start;
+		} else i++;
+	}
+
+	if (M >= 3) return 2;
+	else return S;
 }
 
 signed main() {
@@ -24,8 +43,8 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
-	while (t--) solve();
+	cin >> t;
+	while (t--) cout<<solve()<<"\n";
 
 	return 0;
 }

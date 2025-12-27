@@ -16,7 +16,21 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int n;
+	cin>>n;
+
+	vec<int> a(n),b(n);
+	loop(i,0,n) cin>>a[i];
+	loop(i,0,n) cin>>b[i];
+
+	int k = 0;
+	loop(i,0,n) {
+		int op1 = k-a[i], op2 = b[i]-k;
+		if (i==n-1) op1>op2 ? k=op1 : k=op2;
+		else abs(op1)>abs(op2) ? k=op1 : k=op2;
+	}
+
+	cout<<k<<"\n";
 }
 
 signed main() {
@@ -24,7 +38,7 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
+	cin >> t;
 	while (t--) solve();
 
 	return 0;

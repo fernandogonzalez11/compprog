@@ -16,7 +16,18 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int n;
+	cin >> n;
+
+	int cnt = 0;
+	int x = 0;
+	while (2*x <= n) {
+		int y = (n-2*x)/4;
+		if (2*x + 4*y == n) cnt++;
+		x++;
+	}
+
+	cout << cnt << "\n";
 }
 
 signed main() {
@@ -24,7 +35,7 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
+	cin >> t;
 	while (t--) solve();
 
 	return 0;

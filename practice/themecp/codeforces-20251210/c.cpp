@@ -16,7 +16,14 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int a,b;
+	cin>>a>>b;
+
+	int x1 = -1000;
+	int x2 = 3*a-b-x1;
+
+	cout << 3 << "\n";
+	cout << x1 << " " << b << " " << x2 << "\n";
 }
 
 signed main() {

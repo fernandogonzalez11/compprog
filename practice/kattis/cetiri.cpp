@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <numeric>
 
 // macros
 typedef long long int ll;
@@ -16,7 +17,12 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    array<int,3> a;
+	loop(i,0,3) cin >> a[i];
+	sort(a.begin(),a.end());
+	int dif = min(a[1]-a[0], a[2]-a[1]);
+	if (a[1]-a[0] == a[2]-a[1]) cout << a[2]+dif << "\n";
+	else cout << (4*a[0]+6*dif-accumulate(a.begin(),a.end(),0)) << "\n";
 }
 
 signed main() {

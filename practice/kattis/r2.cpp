@@ -16,7 +16,9 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int r,s;
+	cin>>r>>s;
+	cout << 2*s-r << "\n";
 }
 
 signed main() {

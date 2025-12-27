@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 
 // macros
@@ -15,8 +16,29 @@ typedef long long int ll;
 
 using namespace std;
 
+bool ok(int m, vec<int> v) {
+
+}
+
 void solve() {
-    
+    int n;
+	cin>>n;
+	vec<int> v(n);
+	loop(i,0,n) cin>>v[i];
+
+	sort(v.begin(),v.end());
+	// int l = v[0], r = v[1]+1;
+	// while (r-l>1) {
+	// 	int m = (r-l)/2+l;
+	// 	// VVVVVFFFF
+	// 	if (ok(m,v)) l = m;
+	// 	else r = m;
+	// }
+
+	// printarr(v);
+	// loop(i,1,n) v[i]-=v[0];
+	// printarr(v);
+	cout << max(v[0],v[1]-v[0]) << "\n";
 }
 
 signed main() {
@@ -24,7 +46,7 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
+	cin >> t;
 	while (t--) solve();
 
 	return 0;

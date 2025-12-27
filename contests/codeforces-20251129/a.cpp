@@ -16,7 +16,9 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    int n,y,r;
+	cin>>n>>y>>r;
+	cout << min(n,r + y/2) << "\n";
 }
 
 signed main() {
@@ -24,7 +26,7 @@ signed main() {
 	cin.tie(0);
 	
 	int t = 1;
-	// cin >> t;
+	cin >> t;
 	while (t--) solve();
 
 	return 0;
