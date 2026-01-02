@@ -2,11 +2,10 @@
 
 // macros
 #define int long long
-#define vec vector 
+#define vec vector
 #define loop(i, a, b) for (int i = a; i < b; i++)
 #define F first
 #define S second
-// constants
 #define printarr(a) cout << #a << ": "; \
 	for (auto x : a) cout << x << " "; \
 	cout << "\n";
@@ -15,11 +14,12 @@ using namespace std;
 using ll = long long;
 using pii = pair<int,int>;
 
+// constants
 const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
-	
+
 }
 
 signed main() {
