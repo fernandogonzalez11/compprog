@@ -16,7 +16,13 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    
+    string s;
+	cin>>s;
+
+	int amtys = 0;
+	loop(i,0,s.length()) amtys += (s[i]=='Y');
+
+	cout << (amtys>1 ? "NO\n" : "YES\n");
 }
 
 signed main() {

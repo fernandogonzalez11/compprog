@@ -16,23 +16,20 @@ typedef long long int ll;
 using namespace std;
 
 void solve() {
-    string s;
-	cin>>s;
+    int n;
+	cin>>n;
+	vec<int> v(n);
+	loop(i,0,n) cin>>v[i];
 
-	int n = s.length();
 
-	int ops = (s[0]=='u') + (s[n-1]=='u');
-	s[0]=s[n-1]='s';
-
-	loop(i,1,n-1) {
-		if (s[i] != 'u') continue;
-		ops += (s[i+1]=='u');
-		s[i+1]='s';
+	int s = 0, m = INF;
+	loop(i,0,n) {
+		s += abs(v[i]);
+		m = min(m, abs(v[i]));
 	}
 
-	// cout<<s<<"\n";
-	cout << ops << "\n";
-}
+	cout << (s-m) << "\n";
+}   
 
 signed main() {
 	ios::sync_with_stdio(false);
