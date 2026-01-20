@@ -20,7 +20,13 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+	int n;
+	cin>>n;
+	vec<int> v(n);
+	loop(i,0,n) cin>>v[i];
+	
+	sort(v.begin(),v.end());
+	cout << abs(v[n-1]-v[0])+abs(v[0]-v[n-2])+abs(v[n-2]-v[1])+abs(v[1]-v[n-1]) << "\n";
 }
 
 signed main() {

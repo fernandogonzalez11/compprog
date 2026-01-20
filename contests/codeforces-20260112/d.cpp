@@ -19,8 +19,27 @@ using pii = pair<int,int>;
 const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
-void solve() {
+void test1() {
+	int i = 1;
+	int c = 0;
+	while (i <= 1e9) {
+		i = i*2 + 1;
+		c += 2;
+	}
 
+	cout << c << "\n"; // 58
+}
+
+void solve() {
+	int n,k;
+	cin>>n>>k;
+
+	if (k > 60) {
+		cout << "0\n";
+		return;
+	}
+
+	
 }
 
 signed main() {

@@ -19,8 +19,18 @@ using pii = pair<int,int>;
 const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
-void solve() {
+int solve() {
+	int s,k,m;
+	cin>>s>>k>>m;
 
+	if (s <= k) {
+		m %= k;
+		return max(0LL, s-m);
+	} else {
+		m %= 2*k;
+		if (m < k) return s-m;
+		return k-(m-k);
+	}
 }
 
 signed main() {
@@ -29,7 +39,7 @@ signed main() {
 	
 	int t = 1;
 	cin >> t;
-	while (t--) solve();
+	while (t--) cout<<solve()<<"\n";
 
 	return 0;
 }

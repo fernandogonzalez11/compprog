@@ -20,7 +20,26 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n;
+	cin>>n;
+	vec<pair<int,bool>> v(n);
+	loop(i,0,n) cin>>v[i].F;
 
+	loop(i,0,n) v[i].S = i%2;
+
+	sort(all(v));
+
+	bool works1 = true, works2 = true;
+	loop(i,1,n) {
+		works1 &= (v[i].S != v[i-1].S);
+	}
+
+	loop(i,0,n) v[i].S = !v[i].S;
+	loop(i,1,n) {
+		works2 &= (v[i].S != v[i].S);
+	}
+
+	cout << (works1||works2 ? "YES\n" : "NO\n");
 }
 
 signed main() {

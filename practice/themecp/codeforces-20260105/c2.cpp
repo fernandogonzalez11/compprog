@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 
 // macros
@@ -20,7 +21,21 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n;
+	cin>>n;
+	vec<int> v(n);
+	loop(i,0,n) cin>>v[i];
 
+	if (n==2) cout << *min_element(all(v)) << "\n";
+	else {
+		int m = 0;
+		loop(i,0,n-2) {
+			vec<int> tmp = {v[i],v[i+1],v[i+2]};
+			sort(all(tmp));
+			m = max(m,tmp[1]);
+		}
+		cout << m << "\n";
+	}
 }
 
 signed main() {

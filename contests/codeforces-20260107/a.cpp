@@ -20,7 +20,11 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+	int n;
+	cin >> n;
+	vec<int> v(n);
+	loop(i,0,n) cin>>v[i];
+	cout << ((v[0]==1||v[n-1]==1) ? "Alice" : "Bob") << "\n";
 }
 
 signed main() {

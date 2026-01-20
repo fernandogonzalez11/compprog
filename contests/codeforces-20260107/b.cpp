@@ -20,7 +20,46 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n,k;
+	cin>>n>>k;
+	vec<int> v(n);
+	loop(i,0,n) cin>>v[i];
 
+	sort(all(v));
+
+	if (v[0] != 0) {
+		cout << 0 << "\n";
+		return;
+	}
+
+	vec<bool> rm(n, false);
+	int sz = n;
+	loop(i,1,n) {
+		if (v[i]==v[i-1]) {
+			rm[i] = true;
+			sz--;
+		}
+	}
+
+	if (sz > k-1) {
+		for (int i = n-1; i >= 0; i--) {
+			if (!rm[i]) {
+				rm[i] = true;
+				if (--sz <= k-1) break;
+			}
+		}
+	}
+
+	int mex = 0;
+	loop(i,1,n) {
+		if (rm[i]) continue;
+		if (v[i]-mex > 1) {
+			mex++;
+			break;
+		} else if (v[i]-mex == 1) mex++;
+	}
+
+	cout << ++mex << "\n";
 }
 
 signed main() {

@@ -20,7 +20,18 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n;
+	cin>>n;
+	vec<int> a(n),b(n);
+	loop(i,0,n) cin>>a[i];
+	loop(i,0,n) cin>>b[i];
 
+	bool w = true, wrev = true;
+	for (int i = 0; i < n; i++) w &= a[i]==b[i];
+	for (int i = 0; i < n; i++) wrev &= a[i]==b[n-1-i];
+
+	if (!(w||wrev)) cout << "Alice\n";
+	else cout << "Bob\n";
 }
 
 signed main() {

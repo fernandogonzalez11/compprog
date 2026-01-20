@@ -20,7 +20,18 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n,k;
+	cin>>n>>k;
+	vec<int> v(n);
+	loop(i,0,n) cin>>v[i];
 
+	int mex = 0;
+	{
+		set<int> s(all(v));
+		while (s.count(mex)) mex++;
+	}
+
+	cout << min(mex, k-1) << "\n";
 }
 
 signed main() {

@@ -20,7 +20,13 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+	int n,k;
+	cin>>n>>k;
+	string s = "";
+	loop(i,0,k) s += (char)('a'+i);
+	string s2 = "";
+	loop(i,0,n) s2 += s;
+	cout << s2 << "\n";
 }
 
 signed main() {

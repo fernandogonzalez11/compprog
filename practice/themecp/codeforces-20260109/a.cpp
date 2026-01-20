@@ -20,7 +20,20 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n;
+	cin>>n;
 
+	int ze,pos,ne;
+	ze=pos=ne=0;
+	loop(i,0,n) {
+		int x;
+		cin>>x;
+		if (x==0) ze++;
+		else if (x>0) pos++;
+		else ne++;
+	}
+
+	cout << ze + (ne%2)*2 << "\n";
 }
 
 signed main() {

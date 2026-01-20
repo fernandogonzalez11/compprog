@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <bits/stdc++.h>
 
 // macros
@@ -8,8 +9,8 @@
 #define F first
 #define S second
 #define printarr(a) cout << #a << ": "; \
-	for (auto x : a) cout << x << " "; \
-	cout << "\n";
+    for (auto x : a) cout << x << " "; \
+    cout << "\n";
 
 using namespace std;
 using ll = long long;
@@ -20,16 +21,19 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+    int r;
+    cin >> r;
+    vec<int> ratings = {1200,1400,1600,1900,2100,2300,2400,2600,3000};
+    cout << *upper_bound(all(ratings), r) << "\n";
 }
 
 signed main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	int t = 1;
-	cin >> t;
-	while (t--) solve();
-
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t = 1;
+    // cin >> t;
+    while (t--) solve();
+    
+    return 0;
 }

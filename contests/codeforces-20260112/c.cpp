@@ -20,7 +20,47 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n,k;
+	cin>>n>>k;
 
+	if (k > n) {
+		cout << "-1\n";
+		return;
+	}
+
+	set<int> s;
+	queue<int> q;
+
+	int steps = 0;
+	q.push(n);
+
+	while (!s.count(0)) {
+		int sz = q.size();
+
+		loop(i,0,sz) {
+			int x = q.front();
+			q.pop();
+
+			if (x == k) {
+				cout << steps << "\n";
+				return;
+			}
+
+			int x1 = x/2, x2 = x-x1;
+			if (!s.count(x1)) {
+				q.push(x1);
+				s.insert(x1);
+			}
+
+			if (!s.count(x2)) {
+				q.push(x2);
+				s.insert(x2);
+			}
+		}
+		steps++;
+	}
+
+	cout << "-1\n";
 }
 
 signed main() {

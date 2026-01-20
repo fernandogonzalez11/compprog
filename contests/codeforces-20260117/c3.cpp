@@ -20,7 +20,24 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
+	int n;
+	cin>>n;
+	string s,s2;
+	cin>>s;
 
+	s2 = s;
+	sort(all(s2));
+
+	if (s2==s) return void(cout << "Bob\n");
+
+	cout << "Alice\n";
+	vec<int> move;
+	loop(i,0,n) {
+		if (s[i] != s2[i]) move.push_back(i+1);
+	}
+	cout << move.size() << "\n";
+	for (auto x : move) cout << x << " ";
+	cout << "\n";
 }
 
 signed main() {

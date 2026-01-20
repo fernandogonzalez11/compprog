@@ -20,7 +20,11 @@ const int INF = 1LL << 62;
 const int MOD = 1e9 + 7;
 
 void solve() {
-
+	vec<int> ans = {0,0,2,3,0,1};
+	int n;
+	cin>>n;
+	if (n<ans.size()) cout << ans[n] << "\n";
+	else cout << (n%2) << "\n";
 }
 
 signed main() {
